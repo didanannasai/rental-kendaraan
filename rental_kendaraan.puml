@@ -1,0 +1,139 @@
+@startuml
+
+entity Penyewaan {
+    *id_penyewaan : number <<PK>>
+    --
+    *id_pelanggan : number <<FK>>
+    *id_kendaraan : number <<FK>>
+    --
+    *tanggal_pesan : number
+    *tanggal_mulai_sewa : number
+    *tanggal_akhir_sewa : number
+    *tanggal_pengembalian : number
+    *total_biaya : number
+    *kondisi_kendaraan_sebelum : text
+    *kondisi_kendarran_sesudah : text
+    *status_pengembalian : text
+}
+
+entity Pelanggan {
+    *id_pelanggan : number <<PK>>
+    --
+    *nik : number
+    *nama : text
+    *tanggal_lahir : number
+    *jenis_kelamin : text
+    *alamat : text
+    *no_hp : number
+    *email : text
+    *status_anggota : boolean
+    *total_penyewaan : number
+}
+
+entity Pembayaran {
+    *id_pembayaran : number <<PK>>
+    --
+    *id_penyewaan : number <<FK>>
+    --
+    *tanggal_bayar : number
+    *metode_bayar : text
+    *status_bayar : boolean
+}
+
+entity Denda {
+    *id_denda : number <<PK>>
+    --
+    *id_penyewaan : number <<FK>>
+    --
+    *jumlah_denda : number
+    *alasan : text
+    *status_denda : boolean
+}
+
+entity Pegawai {
+    *id_pegawai : number <<PK>>
+    --
+    *nik : number
+    *nama_lengkap : text
+    *alamat : text
+    *no_hp : number
+    *email : text
+    *tanggal_lahir : number
+    *jenis_kelamin : text
+    *jabatan : text
+}
+
+entity Kendaraan {
+    *id_kendaraan : number <<PK>>
+    --
+    *id_cabang : number <<FK>>
+    --
+    *plat_nomor : number
+    *merek : text
+    *model : text
+    *tipe : text
+    *tahun_pembuatan : number
+    *warna : text
+    *kapasitas_penumpang : number
+    *jenis_kendaraan : text
+    *transmisi : text
+    *bahan_bakar : text
+    *harga_sewa : number
+    *status_kendaraan : boolean
+}
+
+entity Cabang {
+    *id_cabang : number <<PK>>
+    --
+    *nama_cabang : text
+    *alamat : text
+    *no_hp : number
+}
+
+entity tracking_GPS {
+    *id_tracking : number <<PK>>
+    --
+    *id_kendaraan : number <<FK>>
+    --
+    *waktu : number
+    *latitude : number
+    *longtitude : number
+}
+
+Penyewaan}|--o|Pelanggan
+note on link
+    Melakukan
+end note
+Penyewaan||--||Pembayaran
+note on link
+    Melakukan
+end note
+Penyewaan|o--o{Denda
+note on link
+    Mendapat
+end note
+Penyewaan||--|{Kendaraan
+note on link
+    Disewa
+end note
+Penyewaan}|--||Pegawai
+note on link
+    Mengelola
+end note
+
+Kendaraan}|--||Cabang
+note on link
+    Mempunyai
+end note
+Kendaraan|o--|{tracking_GPS
+note on link
+    Mempunyai
+end note
+
+Pegawai}|--||Cabang
+note on link
+    Mempunyai
+end note
+
+
+@enduml
