@@ -1,103 +1,103 @@
 @startuml
 
 entity Penyewaan {
-    *id_penyewaan : number <<PK>>
+    *id_penyewaan : integer(10) <<PK>>
     --
-    *id_pelanggan : number <<FK>>
-    *id_kendaraan : number <<FK>>
+    *id_pelanggan : integer(10) <<FK>>
+    *id_kendaraan : integer(10) <<FK>>
     --
-    *tanggal_pesan : number
-    *tanggal_mulai_sewa : number
-    *tanggal_akhir_sewa : number
-    *tanggal_pengembalian : number
-    *total_biaya : number
-    *kondisi_kendaraan_sebelum : text
-    *kondisi_kendarran_sesudah : text
-    *status_pengembalian : text
+    *tanggal_pesan : date
+    *tanggal_mulai_sewa : date
+    *tanggal_akhir_sewa : date
+    *tanggal_pengembalian : date
+    *total_biaya : integer(10)
+    *kondisi_kendaraan_sebelum : varchar(255)
+    *kondisi_kendarran_sesudah : varchar(255)
+    *status_pengembalian : varchar(255)
 }
 
 entity Pelanggan {
-    *id_pelanggan : number <<PK>>
+    *id_pelanggan : integer(10) <<PK>>
     --
-    *nik : number
-    *nama : text
-    *tanggal_lahir : number
-    *jenis_kelamin : text
-    *alamat : text
-    *no_hp : number
-    *email : text
+    *nik : integer(10)
+    *nama : varchar(255)
+    *tanggal_lahir : date
+    *jenis_kelamin : varchar(255)
+    *alamat : varchar(255)
+    *no_hp : integer(10)
+    *email : varchar(255)
     *status_anggota : boolean
-    *total_penyewaan : number
+    *total_penyewaan : integer(10)
 }
 
 entity Pembayaran {
-    *id_pembayaran : number <<PK>>
+    *id_pembayaran : integer(10) <<PK>>
     --
-    *id_penyewaan : number <<FK>>
+    *id_penyewaan : integer(10) <<FK>>
     --
-    *tanggal_bayar : number
-    *metode_bayar : text
+    *tanggal_bayar : date
+    *metode_bayar : varchar(255)
     *status_bayar : boolean
 }
 
 entity Denda {
-    *id_denda : number <<PK>>
+    *id_denda : integer(10) <<PK>>
     --
-    *id_penyewaan : number <<FK>>
+    *id_penyewaan : integer(10) <<FK>>
     --
-    *jumlah_denda : number
-    *alasan : text
+    *jumlah_denda : integer(10)
+    *alasan : varchar(255)
     *status_denda : boolean
 }
 
 entity Pegawai {
-    *id_pegawai : number <<PK>>
+    *id_pegawai : integer(10) <<PK>>
     --
-    *nik : number
-    *nama_lengkap : text
-    *alamat : text
-    *no_hp : number
-    *email : text
-    *tanggal_lahir : number
-    *jenis_kelamin : text
-    *jabatan : text
+    *nik : integer(10)
+    *nama_lengkap : varchar(255)
+    *alamat : varchar(255)
+    *no_hp : integer(10)
+    *email : varchar(255)
+    *tanggal_lahir : date
+    *jenis_kelamin : varchar(255)
+    *jabatan : varchar(255)
 }
 
 entity Kendaraan {
-    *id_kendaraan : number <<PK>>
+    *id_kendaraan : integer(10) <<PK>>
     --
-    *id_cabang : number <<FK>>
+    *id_cabang : integer(10) <<FK>>
     --
-    *plat_nomor : number
-    *merek : text
-    *model : text
-    *tipe : text
-    *tahun_pembuatan : number
-    *warna : text
-    *kapasitas_penumpang : number
-    *jenis_kendaraan : text
-    *transmisi : text
-    *bahan_bakar : text
-    *harga_sewa : number
+    *plat_nomor : integer(10)
+    *merek : varchar(255)
+    *model : varchar(255)
+    *tipe : varchar(255)
+    *tahun_pembuatan : year
+    *warna : varchar(255)
+    *kapasitas_penumpang : integer(10)
+    *jenis_kendaraan : varchar(255)
+    *transmisi : varchar(255)
+    *bahan_bakar : varchar(255)
+    *harga_sewa : integer(10)
     *status_kendaraan : boolean
 }
 
 entity Cabang {
-    *id_cabang : number <<PK>>
+    *id_cabang : integer(10) <<PK>>
     --
-    *nama_cabang : text
-    *alamat : text
-    *no_hp : number
+    *nama_cabang : varchar(255)
+    *alamat : varchar(255)
+    *no_hp : integer(10)
 }
 
 entity tracking_GPS {
-    *id_tracking : number <<PK>>
+    *id_tracking : integer(10) <<PK>>
     --
-    *id_kendaraan : number <<FK>>
+    *id_kendaraan : integer(10) <<FK>>
     --
-    *waktu : number
-    *latitude : number
-    *longtitude : number
+    *waktu : time
+    *latitude : integer(10)
+    *longtitude : integer(10)
 }
 
 Penyewaan}|--o|Pelanggan
