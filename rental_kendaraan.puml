@@ -53,6 +53,8 @@ entity Denda {
 entity Pegawai {
     *id_pegawai : number <<PK>>
     --
+    *id_penyewaan : number <<FK>>
+    --
     *nik : number
     *nama_lengkap : text
     *alamat : text
@@ -85,6 +87,8 @@ entity Kendaraan {
 entity Cabang {
     *id_cabang : number <<PK>>
     --
+    *id_pegawai : number <<FK>>
+    --
     *nama_cabang : text
     *alamat : text
     *no_hp : number
@@ -100,37 +104,37 @@ entity tracking_GPS {
     *longtitude : number
 }
 
-Penyewaan}|--o|Pelanggan
+Penyewaan }|--|| Pelanggan
 note on link
     Melakukan
 end note
-Penyewaan||--||Pembayaran
+Penyewaan ||--|| Pembayaran
 note on link
     Melakukan
 end note
-Penyewaan|o--o{Denda
+Penyewaan ||--o{ Denda
 note on link
     Mendapat
 end note
-Penyewaan||--|{Kendaraan
+Penyewaan ||--|{ Kendaraan
 note on link
     Disewa
 end note
-Penyewaan}|--||Pegawai
+Penyewaan }|--|| Pegawai
 note on link
     Mengelola
 end note
 
-Kendaraan}|--||Cabang
+Kendaraan }|--|| Cabang
 note on link
     Mempunyai
 end note
-Kendaraan|o--|{tracking_GPS
+Kendaraan ||--|{ tracking_GPS
 note on link
     Mempunyai
 end note
 
-Pegawai}|--||Cabang
+Pegawai }|--|| Cabang
 note on link
     Mempunyai
 end note
