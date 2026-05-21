@@ -19,6 +19,8 @@ entity Penyewaan {
 entity Pelanggan {
     *id_pelanggan : number <<PK>>
     --
+    *id_penyewaan : number <<FK>>
+    --
     *nik : number
     *nama : text
     *tanggal_lahir : number
