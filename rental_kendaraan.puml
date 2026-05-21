@@ -81,7 +81,7 @@ entity Kendaraan {
     *transmisi : text
     *bahan_bakar : text
     *harga_sewa : number
-    *status_kendaraan : boolean
+    *status_kendaraan : text
 }
 
 entity Cabang {
@@ -100,8 +100,8 @@ entity tracking_GPS {
     *id_kendaraan : number <<FK>>
     --
     *waktu : number
-    *latitude : number
-    *longtitude : number
+    *latitude : varchar
+    *longtitude : varchar
 }
 
 Penyewaan }|--|| Pelanggan
